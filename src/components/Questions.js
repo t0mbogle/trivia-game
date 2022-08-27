@@ -6,9 +6,10 @@ function Questions() {
   const [showQuestion, setShowQuestion] = useState(false);
   const [answer, setAnswer] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
+  const [category, setCategory] = useState(false);
 
   const handleQuestion = () => {
-    getQuestion(setQuestion, setAnswer);
+    getQuestion(setQuestion, setAnswer, setCategory);
     setShowQuestion(true);
     setShowAnswer(false); // On click of new question, collapse answer
   };
@@ -20,6 +21,7 @@ function Questions() {
   return (
     <div>
       <div className="question-wrapper">
+        <div>Category Hint: {category}</div>
         <button type="button" onClick={handleQuestion}>
           Get Question
         </button>
