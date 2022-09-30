@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import getQuestion from "../requests/getQuestion";
 
-function Questions() {
+// eslint-disable-next-line react/prop-types
+function Questions({ numOfQuestions }) {
   const [question, setQuestion] = useState("");
   const [count, setCount] = useState(1);
   const [answer, setAnswer] = useState("");
@@ -42,16 +43,19 @@ function Questions() {
           Get Hint
         </button>
         {showHint ? <div>{category}</div> : null}
-
         <h3>Question: {count}</h3>
+        {/* eslint-disable-next-line react/prop-types */}
+        <p>Total Qs: {numOfQuestions}</p>
         <div data-testid="question-id">{question}</div>
       </div>
+
       <div className="answer-wrapper">
         <button type="button" onClick={handleAnswer}>
           Show Answer
         </button>
         {showAnswer ? <div data-testid="answer-id">{answer}</div> : null}
       </div>
+
       <button type="button" onClick={handleQuestion}>
         Next Question
       </button>
