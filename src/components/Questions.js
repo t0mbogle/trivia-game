@@ -1,31 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import getQuestion from "../requests/getQuestion";
 
 function Questions() {
   const [question, setQuestion] = useState("");
-  const [showQuestion, setShowQuestion] = useState(false);
+  const [count, setCount] = useState(1);
   const [answer, setAnswer] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
-  const [category, setCategory] = useState(false);
+  const [category, setCategory] = useState("");
+  const [showHint, setShowHint] = useState(false);
+
+  useEffect(() => {
+    getQuestion(setQuestion, setAnswer, setCategory);
+  }, []);
+
+  const navigate = useNavigate();
 
   const handleQuestion = () => {
-    getQuestion(setQuestion, setAnswer, setCategory);
-    setShowQuestion(true);
-    setShowAnswer(false); // On click of new question, collapse answer
+    if (count < 10) {
+      getQuestion(setQuestion, setAnswer, setCategory);
+      setShowAnswer(false); // On click of new question, collapse answer & hint
+      setShowHint(false);
+      setCount((prev) => prev + 1);
+    } else {
+      navigate("/end-quiz");
+    }
   };
 
   const handleAnswer = () => {
     setShowAnswer(true);
   };
 
+  const handleHint = () => {
+    setShowHint(true);
+  };
+
   return (
     <div>
       <div className="question-wrapper">
-        <div>Category Hint: {category}</div>
-        <button type="button" onClick={handleQuestion}>
-          Get Question
+        <button type="button" onClick={handleHint}>
+          Get Hint
         </button>
-        {showQuestion ? <div data-testid="question-id">{question}</div> : null}
+        {showHint ? <div>{category}</div> : null}
+
+        <h3>Question: {count}</h3>
+        <div data-testid="question-id">{question}</div>
       </div>
       <div className="answer-wrapper">
         <button type="button" onClick={handleAnswer}>
@@ -33,6 +52,9 @@ function Questions() {
         </button>
         {showAnswer ? <div data-testid="answer-id">{answer}</div> : null}
       </div>
+      <button type="button" onClick={handleQuestion}>
+        Next Question
+      </button>
     </div>
   );
 }

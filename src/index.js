@@ -7,8 +7,8 @@ import App from "./App";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    {/* <React.StrictMode> */}
+    <App />
+    {/* </React.StrictMode> */}
   </Router>
 ); // Strict mode renders components twice on dev server
