@@ -8,17 +8,19 @@ import QuestionsContext from "./utils/QuestionsContext";
 
 function App() {
   const [numOfQuestions, setNumOfQuestions] = useState(5);
+
   return (
-    <div className="App">
-      <h1>Trivia Game</h1>
-      <QuestionsContext.Provider value={(numOfQuestions, setNumOfQuestions)}>
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <QuestionsContext.Provider value={{ numOfQuestions, setNumOfQuestions }}>
+      <div className="App">
+        <h1>Trivia Game</h1>
         <Routes>
           <Route exact path="/" element={<StartQuiz />} />
           <Route exact path="/questions" element={<Questions />} />
           <Route exact path="/end-quiz" element={<EndQuiz />} />
         </Routes>
-      </QuestionsContext.Provider>
-    </div>
+      </div>
+    </QuestionsContext.Provider>
   );
 }
 

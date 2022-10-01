@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import getQuestion from "../requests/getQuestion";
+import QuestionsContext from "../utils/QuestionsContext";
 
-// eslint-disable-next-line react/prop-types
-function Questions({ numOfQuestions }) {
+function Questions() {
   const [question, setQuestion] = useState("");
   const [count, setCount] = useState(1);
   const [answer, setAnswer] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
   const [category, setCategory] = useState("");
   const [showHint, setShowHint] = useState(false);
+
+  const { numOfQuestions } = useContext(QuestionsContext);
 
   useEffect(() => {
     getQuestion(setQuestion, setAnswer, setCategory);
@@ -18,7 +20,7 @@ function Questions({ numOfQuestions }) {
   const navigate = useNavigate();
 
   const handleQuestion = () => {
-    if (count < 10) {
+    if (count < numOfQuestions) {
       getQuestion(setQuestion, setAnswer, setCategory);
       setShowAnswer(false); // On click of new question, collapse answer & hint
       setShowHint(false);
@@ -44,8 +46,7 @@ function Questions({ numOfQuestions }) {
         </button>
         {showHint ? <div>{category}</div> : null}
         <h3>Question: {count}</h3>
-        {/* eslint-disable-next-line react/prop-types */}
-        <p>Total Qs: {numOfQuestions}</p>
+        <p>Total Questions: {numOfQuestions} </p>
         <div data-testid="question-id">{question}</div>
       </div>
 

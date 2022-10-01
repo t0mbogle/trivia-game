@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import QuestionsContext from "../utils/QuestionsContext";
 
 function StartQuiz() {
-  // const [numOfQuestions, setNumOfQuestions] = useState(5);
-  const { numOfQuestions, setNumOfQuestions } = useContext(QuestionsContext);
-
   const navigate = useNavigate();
+
+  const { numOfQuestions, setNumOfQuestions } = useContext(QuestionsContext);
 
   const handleStartQuiz = () => {
     navigate("/questions");
@@ -23,14 +22,14 @@ function StartQuiz() {
         </label>
         <label htmlFor="number of questions">
           Number of Questions
-          <select onChange={(e) => setNumOfQuestion(e.target.value)}>
+          <select onChange={(e) => setNumOfQuestions(e.target.value)}>
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
           </select>
         </label>
       </form>
-      <p>Questions for the next game: {numOfQuestions}</p>
+      <p>Questions for the next game: {numOfQuestions} </p>
       <button type="button" onClick={handleStartQuiz}>
         Start
       </button>
