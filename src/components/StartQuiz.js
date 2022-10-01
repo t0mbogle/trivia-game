@@ -17,7 +17,7 @@ function StartQuiz() {
         <label htmlFor="category">
           Category
           <select>
-            <option value="general">General</option>
+            <option value="random">Random</option>
           </select>
         </label>
         <label htmlFor="number of questions">

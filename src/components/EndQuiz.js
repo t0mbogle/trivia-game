@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import QuestionsContext from "../utils/QuestionsContext";
 
 function EndQuiz() {
   const navigate = useNavigate();
+
+  const { numOfQuestions } = useContext(QuestionsContext);
 
   const backToHome = () => {
     navigate("/");
@@ -15,6 +18,11 @@ function EndQuiz() {
   return (
     <div>
       <p>Hello this is the end of the quiz</p>
+      <button type="button">
+        View all {numOfQuestions} Questions and Answers
+      </button>
+      <br />
+      <br />
       <button type="button" onClick={backToHome}>
         Back to Home
       </button>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import StartQuiz from "./components/StartQuiz";
-import Questions from "./components/Questions";
-import EndQuiz from "./components/EndQuiz";
-import QuestionsContext from "./utils/QuestionsContext";
+import "../styles/App.css";
+import StartQuiz from "./StartQuiz";
+import Questions from "./Questions";
+import EndQuiz from "./EndQuiz";
+import QuestionsContext from "../utils/QuestionsContext";
 
 function App() {
   const [numOfQuestions, setNumOfQuestions] = useState(5);
