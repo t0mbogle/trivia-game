@@ -49,7 +49,7 @@ function Questions() {
         <button type="button" onClick={backToHome} className="btn text-[20px]">
           <MdOutlineArrowBack />
         </button>
-        <p>
+        <p className="text-[#7D83FF]">
           Question: {count}/{numOfQuestions}
         </p>
       </div>

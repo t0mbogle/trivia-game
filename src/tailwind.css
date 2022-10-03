@@ -5,9 +5,10 @@
 /* Add layers to run at the end of 'components' cascade */
 * {
  color: #F5F5F5;
+ font-family: 'Quicksand', sans-serif;
 }
 @layer components {
     .btn {
-        @apply px-3 py-2 border-4 border-teal-600 rounded-lg text-[#F5F5F5];
+        @apply px-3 py-2 border-4 border-[#3D7068] bg-[#3D7068] rounded-lg text-[#F5F5F5];
     }
 }
