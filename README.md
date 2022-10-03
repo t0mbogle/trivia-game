@@ -18,7 +18,7 @@ Launches the test runner in the interactive watch mode.
 See the section about running tests for more information.
 
 ## Screenshots
-<img src="src/assets/triviagamescreenshot.png" width=50% height=50%>
+<img src="src/assets/triviagamescreenshot.png" width=75% height=75%>
 
 ## Roadmap
 - [ ] Make all API calls on game start, filter through object on next question
