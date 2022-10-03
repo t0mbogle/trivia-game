@@ -18,8 +18,6 @@ function Questions() {
     getQuestion(setQuestion, setAnswer, setCategory);
   }, []);
 
-  const navigate = useNavigate();
-
   const handleAnswer = () => {
     setShowAnswer(true);
   };
@@ -27,6 +25,8 @@ function Questions() {
   const handleHint = () => {
     setShowHint(true);
   };
+
+  const navigate = useNavigate();
 
   const handleQuestion = () => {
     if (count < numOfQuestions) {
@@ -46,10 +46,10 @@ function Questions() {
   return (
     <div>
       <div className="question-wrapper">
-        <button type="button" onClick={backToHome}>
+        <button type="button" onClick={backToHome} className="btn">
           <MdOutlineArrowBack />
         </button>
-        <button type="button" onClick={handleHint}>
+        <button type="button" onClick={handleHint} className="btn">
           Get Hint
         </button>
         {showHint ? <div>{category}</div> : null}
@@ -59,21 +59,15 @@ function Questions() {
       </div>
 
       <div className="answer-wrapper">
-        <button type="button" onClick={handleAnswer}>
+        <button type="button" onClick={handleAnswer} className="btn">
           Show Answer
         </button>
         {showAnswer ? <div data-testid="answer-id">{answer}</div> : null}
       </div>
 
-      {count < numOfQuestions ? (
-        <button type="button" onClick={handleQuestion}>
-          Next Question
-        </button>
-      ) : (
-        <button type="button" onClick={handleQuestion}>
-          End Quiz
-        </button>
-      )}
+      <button type="button" onClick={handleQuestion} className="btn">
+        {count < numOfQuestions ? "Next Question" : "End Quiz"}
+      </button>
     </div>
   );
 }

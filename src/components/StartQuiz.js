@@ -30,7 +30,7 @@ function StartQuiz() {
         </label>
       </form>
       <p>Questions for the next game: {numOfQuestions} </p>
-      <button type="button" onClick={handleStartQuiz}>
+      <button type="button" onClick={handleStartQuiz} className="btn">
         Start
       </button>
     </div>

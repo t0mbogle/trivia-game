@@ -18,15 +18,15 @@ function EndQuiz() {
   return (
     <div>
       <p>Hello this is the end of the quiz</p>
-      <button type="button">
+      <button type="button" className="btn">
         View all {numOfQuestions} Questions and Answers
       </button>
       <br />
       <br />
-      <button type="button" onClick={backToHome}>
+      <button type="button" onClick={backToHome} className="btn">
         Back to Home
       </button>
-      <button type="button" onClick={playAgain}>
+      <button type="button" onClick={playAgain} className="btn">
         Play Again
       </button>
     </div>

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add layers to run at the end of 'components' cascade */
+* {
+ color: #F5F5F5;
+}
+@layer components {
+    .btn {
+        @apply px-3 py-2 border-4 border-teal-600 rounded-lg text-white;
+    }
+}
