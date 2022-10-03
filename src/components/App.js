@@ -10,8 +10,7 @@ function App() {
   const [numOfQuestions, setNumOfQuestions] = useState(5);
 
   return (
-    <div className="h-screen bg-[#272838] flex flex-col items-center justify-center text-center">
-      <h1 className="text-[#7D83FF] text-3xl">Trivia Game</h1>
+    <div className="h-screen w-screen bg-[#272838] flex flex-col items-center justify-center text-center">
       {/* eslint-disable-next-line react/jsx-no-constructed-context-values */}
       <QuestionsContext.Provider value={{ numOfQuestions, setNumOfQuestions }}>
         <Routes>

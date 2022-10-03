@@ -44,30 +44,41 @@ function Questions() {
   };
 
   return (
-    <div>
-      <div className="question-wrapper">
-        <button type="button" onClick={backToHome} className="btn">
+    <div className="w-full h-full flex flex-col justify-between">
+      <div className="flex justify-between m-6">
+        <button type="button" onClick={backToHome} className="btn text-[20px]">
           <MdOutlineArrowBack />
         </button>
-        <button type="button" onClick={handleHint} className="btn">
-          Get Hint
-        </button>
-        {showHint ? <div>{category}</div> : null}
-        <h3>Question: {count}</h3>
-        <p>Total Questions: {numOfQuestions} </p>
-        <div data-testid="question-id">{question}</div>
+        <p>
+          Question: {count}/{numOfQuestions}
+        </p>
       </div>
 
-      <div className="answer-wrapper">
-        <button type="button" onClick={handleAnswer} className="btn">
-          Show Answer
-        </button>
-        {showAnswer ? <div data-testid="answer-id">{answer}</div> : null}
+      <div className="content-wrapper">
+        <p data-testid="question-id" className="mx-6 my-2 text-xl">
+          {question}
+        </p>
+        <div className="hint-answer flex justify-center m-3">
+          <div className="hint-wrapper flex flex-col p-6">
+            <button type="button" onClick={handleHint} className="btn">
+              Get Hint
+            </button>
+            {showHint ? <p>{category}</p> : null}
+          </div>
+          <div className="answer-wrapper flex flex-col p-6">
+            <button type="button" onClick={handleAnswer} className="btn">
+              Show Answer
+            </button>
+            {showAnswer ? <p data-testid="answer-id">{answer}</p> : null}
+          </div>
+        </div>
       </div>
 
-      <button type="button" onClick={handleQuestion} className="btn">
-        {count < numOfQuestions ? "Next Question" : "End Quiz"}
-      </button>
+      <div className="flex justify-end m-6">
+        <button type="button" onClick={handleQuestion} className="btn">
+          {count < numOfQuestions ? "Next Question" : "End Quiz"}
+        </button>
+      </div>
     </div>
   );
 }

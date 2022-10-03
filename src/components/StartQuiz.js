@@ -13,6 +13,7 @@ function StartQuiz() {
 
   return (
     <div>
+      <h1 className="text-[#7D83FF] text-3xl">Trivia Game</h1>
       <form>
         <label htmlFor="category">
           Category
