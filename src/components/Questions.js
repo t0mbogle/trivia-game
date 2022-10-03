@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { MdOutlineArrowBack } from "react-icons/md";
 import getQuestion from "../requests/getQuestion";
 import QuestionsContext from "../utils/QuestionsContext";
 
@@ -19,6 +20,14 @@ function Questions() {
 
   const navigate = useNavigate();
 
+  const handleAnswer = () => {
+    setShowAnswer(true);
+  };
+
+  const handleHint = () => {
+    setShowHint(true);
+  };
+
   const handleQuestion = () => {
     if (count < numOfQuestions) {
       getQuestion(setQuestion, setAnswer, setCategory);
@@ -30,17 +39,16 @@ function Questions() {
     }
   };
 
-  const handleAnswer = () => {
-    setShowAnswer(true);
-  };
-
-  const handleHint = () => {
-    setShowHint(true);
+  const backToHome = () => {
+    navigate("/");
   };
 
   return (
     <div>
       <div className="question-wrapper">
+        <button type="button" onClick={backToHome}>
+          <MdOutlineArrowBack />
+        </button>
         <button type="button" onClick={handleHint}>
           Get Hint
         </button>
@@ -57,9 +65,15 @@ function Questions() {
         {showAnswer ? <div data-testid="answer-id">{answer}</div> : null}
       </div>
 
-      <button type="button" onClick={handleQuestion}>
-        Next Question
-      </button>
+      {count < numOfQuestions ? (
+        <button type="button" onClick={handleQuestion}>
+          Next Question
+        </button>
+      ) : (
+        <button type="button" onClick={handleQuestion}>
+          End Quiz
+        </button>
+      )}
     </div>
   );
 }
