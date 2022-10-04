@@ -1,11 +1,12 @@
-# Getting Started with Create React App
+# Trivia Game
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and designed with a mobile first approach.
 
 ## Technologies used
 - React
 - Tailwindcss
-- React hooks
+- JSX
+- Single Page Application (React router)
 - TDD (RTL)
 - API calls (Axios)
 

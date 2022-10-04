@@ -15,7 +15,7 @@ function StartQuiz() {
     <div>
       <h1 className="text-[#7D83FF] text-3xl">Trivia Game</h1>
 
-      <form className="flex flex-col border-2 rounded-xl my-4">
+      <form className="flex flex-col border-2 border-[#7D83FF] rounded-xl my-4">
         <div className="p-4">
           <label htmlFor="category">
             Category
@@ -46,6 +46,7 @@ function StartQuiz() {
         className="btn bg-[#3D7068] border-[#3D7068] m-4"
       >
         Start
+        {/* Start button should make the API call. If unsuccessful, render error message below */}
       </button>
     </div>
   );

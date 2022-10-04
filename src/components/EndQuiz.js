@@ -17,18 +17,18 @@ function EndQuiz() {
 
   return (
     <div>
-      <p>Hello this is the end of the quiz</p>
-      <button type="button" className="btn">
+      <p className="text-[#7D83FF] text-xl m-4">End of quiz</p>
+      <button type="button" className="btn m-4">
         View all {numOfQuestions} Questions and Answers
       </button>
-      <br />
-      <br />
-      <button type="button" onClick={backToHome} className="btn">
-        Back to Home
-      </button>
-      <button type="button" onClick={playAgain} className="btn">
-        Play Again
-      </button>
+      <div className="m-4">
+        <button type="button" onClick={backToHome} className="btn mx-3">
+          Back to Home
+        </button>
+        <button type="button" onClick={playAgain} className="btn mx-3">
+          Play Again
+        </button>
+      </div>
     </div>
   );
 }

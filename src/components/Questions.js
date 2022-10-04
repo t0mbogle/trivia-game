@@ -59,13 +59,13 @@ function Questions() {
           {question}
         </p>
         <div className="hint-answer flex justify-center m-3">
-          <div className="hint-wrapper flex flex-col p-6">
+          <div className="hint-wrapper flex flex-col px-6 pt-6 pb-2">
             <button type="button" onClick={handleHint} className="btn">
               Get Hint
             </button>
             {showHint ? <p>{category}</p> : null}
           </div>
-          <div className="answer-wrapper flex flex-col p-6">
+          <div className="answer-wrapper flex flex-col px-6 pt-6 pb-2">
             <button type="button" onClick={handleAnswer} className="btn">
               Show Answer
             </button>
