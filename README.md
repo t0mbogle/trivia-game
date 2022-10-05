@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Tailwindcss
 - JSX
 - Single Page Application (React router)
-- TDD (RTL)
+- Testing (RTL)
 - API calls (Axios)
 
 ## Available Scripts

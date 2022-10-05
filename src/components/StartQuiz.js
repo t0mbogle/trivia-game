@@ -8,6 +8,7 @@ function StartQuiz() {
   const { numOfQuestions, setNumOfQuestions } = useContext(QuestionsContext);
 
   const handleStartQuiz = () => {
+    // If able to fetch all data navigate to questions
     navigate("/questions");
   };
 
