@@ -7,16 +7,16 @@ function StartQuiz() {
   const { numOfQuestions, setNumOfQuestions } = useContext(QuestionsContext);
   const navigate = useNavigate();
 
-  const [category, setCategory] = useState("Random");
+  const [category, setCategory] = useState("random");
   let count = 0;
 
   const handleStartQuiz = () => {
+    if (category === "random") {
+      navigate("/questions");
+    }
     while (category === "astronomy" && count < numOfQuestions) {
       getAstronomy();
       count += 1;
-    }
-    if (category === "random") {
-      navigate("/questions");
     }
   };
 
