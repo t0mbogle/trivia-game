@@ -1,27 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QuestionsContext from "../utils/QuestionsContext";
+import getAstronomy from "../requests/getAstronomy";
 
 function StartQuiz() {
+  const { numOfQuestions, setNumOfQuestions } = useContext(QuestionsContext);
   const navigate = useNavigate();
 
-  const { numOfQuestions, setNumOfQuestions } = useContext(QuestionsContext);
+  const [category, setCategory] = useState("Random");
+  let count = 0;
 
   const handleStartQuiz = () => {
-    // If able to fetch all data navigate to questions
-    navigate("/questions");
+    while (category === "astronomy" && count < numOfQuestions) {
+      getAstronomy();
+      count += 1;
+    }
+    if (category === "random") {
+      navigate("/questions");
+    }
   };
 
   return (
     <div>
       <h1 className="text-[#7D83FF] text-3xl">Trivia Game</h1>
-
       <form className="flex flex-col border-2 border-[#7D83FF] rounded-xl my-4">
         <div className="p-4">
           <label htmlFor="category">
             Category
-            <select className="text-black ml-4">
+            <select
+              onChange={(e) => setCategory(e.target.value)}
+              className="text-black ml-4"
+            >
               <option value="random">Random</option>
+              <option value="astronomy">Astronomy</option>
             </select>
           </label>
         </div>
@@ -32,6 +43,7 @@ function StartQuiz() {
               onChange={(e) => setNumOfQuestions(e.target.value)}
               className="text-black ml-4"
             >
+              <option value="2">2</option>
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
@@ -41,6 +53,7 @@ function StartQuiz() {
       </form>
 
       <p>Questions for the next game: {numOfQuestions} </p>
+      <p>{category}</p>
       <button
         type="button"
         onClick={handleStartQuiz}

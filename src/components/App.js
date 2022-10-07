@@ -7,7 +7,7 @@ import EndQuiz from "./EndQuiz";
 import QuestionsContext from "../utils/QuestionsContext";
 
 function App() {
-  const [numOfQuestions, setNumOfQuestions] = useState(5);
+  const [numOfQuestions, setNumOfQuestions] = useState(2);
 
   return (
     <div className="h-screen w-screen bg-[#272838] flex flex-col items-center justify-center text-center">
