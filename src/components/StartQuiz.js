@@ -5,6 +5,7 @@ import getAstronomy from "../requests/getAstronomy";
 
 function StartQuiz() {
   const { numOfQuestions, setNumOfQuestions } = useContext(QuestionsContext);
+
   const navigate = useNavigate();
 
   const [category, setCategory] = useState("random");

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "../css/App.css";
@@ -8,11 +9,12 @@ import QuestionsContext from "../utils/QuestionsContext";
 
 function App() {
   const [numOfQuestions, setNumOfQuestions] = useState(2);
+  const [astronomyQuestions] = useState([]);
 
   return (
     <div className="h-screen w-screen bg-[#272838] flex flex-col items-center justify-center text-center">
       {/* eslint-disable-next-line react/jsx-no-constructed-context-values */}
-      <QuestionsContext.Provider value={{ numOfQuestions, setNumOfQuestions }}>
+      <QuestionsContext.Provider value={{ numOfQuestions, setNumOfQuestions, astronomyQuestions }}>
         <Routes>
           <Route exact path="/" element={<StartQuiz />} />
           <Route exact path="/questions" element={<Questions />} />

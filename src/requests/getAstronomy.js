@@ -2,10 +2,10 @@ import axios from "axios";
 
 const data = [];
 
-const getAstronomy = () => {
+const getAstronomy = async () => {
   const endpoint = "https://jservice.io/api/category?id=17";
 
-  axios
+  await axios
     .get(endpoint)
     .then((res) => {
       const random = Math.floor(Math.random() * res.data.clues_count);
@@ -18,7 +18,7 @@ const getAstronomy = () => {
       console.log(astronomyQuestions);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(`${err} <---- error`);
     });
 };
 
