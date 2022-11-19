@@ -17,12 +17,17 @@ function StartQuiz() {
   return (
     <div>
       <h1 className="text-[#7D83FF] text-3xl">Trivia Game</h1>
-      <Form />
-      <p>Questions for the next game: {numOfQuestions}</p>
-      <button type="button" onClick={handleStartQuiz} className="btn m-4">
-        Start
-        {/* Start button should make the API call. If unsuccessful, render error message below */}
-      </button>
+      <div className="flex items-center border-2 rounded-lg border-[#7D83FF] p-4 mt-3">
+        <div className="p-4">
+          <Form />
+        </div>
+        <div className="p-4">
+          <p>Questions for quiz: {numOfQuestions}</p>
+          <button type="button" onClick={handleStartQuiz} className="btn m-4">
+            Start
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -3,14 +3,20 @@ import axios from "axios";
 import QuestionsContext from "../utils/QuestionsContext";
 
 function Form() {
-  const [category, setCategory] = useState("Random");
+  const [id, setId] = useState("Random");
+
+  const ASTRONOMY = 17;
+  const LANDMARKS = 112;
+  const AUTOMOBILES = 5;
+  const WEATHER = 19;
+  const ZOOLOGY = 54;
 
   const { numOfQuestions, setNumOfQuestions, allQuestions } =
     useContext(QuestionsContext);
 
   const getCategoryQuestion = async () => {
     await axios
-      .get("https://jservice.io/api/category?id=17")
+      .get(`https://jservice.io/api/category?id=${id}`)
       .then((res) => {
         const random = Math.floor(Math.random() * res.data.clues_count);
         const astronomyData = {
@@ -45,11 +51,11 @@ function Form() {
 
   const filter = () => {
     let count = 0;
-    while (category === "Random" && count < numOfQuestions) {
+    while (id === "Random" && count < numOfQuestions) {
       getRandomQuestion();
       count += 1;
     }
-    while (category !== "Random" && count < numOfQuestions) {
+    while (id !== "Random" && count < numOfQuestions) {
       getCategoryQuestion();
       count += 1;
     }
@@ -58,15 +64,19 @@ function Form() {
   return (
     <>
       <form className="flex flex-col border-2 border-[#7D83FF] rounded-xl my-4">
-        <div className="p-4">
+        <div className="pt-4">
           <label htmlFor="category">
             Category
             <select
-              className="text-black"
-              onChange={(e) => setCategory(e.target.value)}
+              className="text-black ml-2"
+              onChange={(e) => setId(e.target.value)} // This will be set to 'Random' or a number value
             >
               <option value="Random">Random</option>
-              <option value="Astronomy">Astronomy</option>
+              <option value={`${ASTRONOMY}`}>Astronomy</option>
+              <option value={`${LANDMARKS}`}>Landmarks</option>
+              <option value={`${AUTOMOBILES}`}>Automobiles</option>
+              <option value={`${WEATHER}`}>Weather</option>
+              <option value={`${ZOOLOGY}`}>Zoology</option>
             </select>
           </label>
         </div>
@@ -74,18 +84,23 @@ function Form() {
           <label htmlFor="number of questions">
             Number of Questions
             <select
-              className="text-black"
+              className="text-black ml-2"
               onChange={(e) => setNumOfQuestions(e.target.value)}
             >
+              <option value="0">0</option>
               <option value="2">2</option>
               <option value="5">5</option>
+              <option value="10">10</option>
             </select>
           </label>
         </div>
+        <div className="pb-4">
+          <button className="btn" type="button" onClick={filter}>
+            Get Questions
+          </button>
+        </div>
       </form>
-      <button className="btn" type="button" onClick={filter}>
-        GET Qs
-      </button>
+      {/* { <p>Fetching data... </p> } */}
     </>
   );
 }

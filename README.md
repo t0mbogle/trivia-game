@@ -23,7 +23,8 @@ See the section about running tests for more information.
 
 ## Roadmap
 - [x] Make all API calls on game start, filter through object on next question
-- [ ] Add multiple categories
+- [x] Add multiple categories
+- [ ] Fetching data message when loading questions
 - [ ] Error messages
 - [ ] More testing for Questions component and routing
 - [ ] Add a timer as a choice before starting quiz
