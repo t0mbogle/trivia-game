@@ -9,7 +9,7 @@ function StartQuiz() {
   const navigate = useNavigate();
 
   const handleStartQuiz = () => {
-    if (allQuestions.length === numOfQuestions) {
+    if (allQuestions.length > 1) {
       navigate("/questions");
     }
   };

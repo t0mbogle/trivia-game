@@ -8,7 +8,7 @@ import EndQuiz from "./EndQuiz";
 import QuestionsContext from "../utils/QuestionsContext";
 
 function App() {
-  const [numOfQuestions, setNumOfQuestions] = useState(2);
+  const [numOfQuestions, setNumOfQuestions] = useState(0);
   const [allQuestions, setAllQuestions] = useState([]);
 
   return (
