@@ -8,8 +8,8 @@ import EndQuiz from "./EndQuiz";
 import QuestionsContext from "../utils/QuestionsContext";
 
 function App() {
-  const [numOfQuestions, setNumOfQuestions] = useState(2);
-  const [allQuestions, setAllQuestions] = useState([]); // change based on category
+  const [numOfQuestions, setNumOfQuestions] = useState(0);
+  const [allQuestions, setAllQuestions] = useState([]);
 
   return (
     <div className="h-screen w-screen bg-[#272838] flex flex-col items-center justify-center text-center">
