@@ -24,6 +24,7 @@ See the section about running tests for more information.
 ## Roadmap
 - [x] Make all API calls on game start, filter through object on next question
 - [x] Add multiple categories
+- [ ] Prevent repeating questions occurring in same quiz
 - [ ] Fetching data message when loading questions
 - [ ] Error messages
 - [ ] More testing for Questions component and routing

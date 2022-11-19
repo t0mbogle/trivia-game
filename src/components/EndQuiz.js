@@ -6,15 +6,17 @@ function EndQuiz() {
   const [showQuestions, setShowQuestions] = useState(false);
   const navigate = useNavigate();
 
-  const { numOfQuestions, allQuestions } = useContext(QuestionsContext);
+  const { numOfQuestions, allQuestions, setAllQuestions } =
+    useContext(QuestionsContext);
 
   const backToHome = () => {
+    setAllQuestions([]);
     navigate("/");
   };
 
-  const playAgain = () => {
-    navigate("/questions");
-  };
+  // const playAgain = () => {
+  //   navigate("/questions");
+  // };
 
   const handleShowQuestions = () => {
     setShowQuestions(true);
@@ -42,9 +44,9 @@ function EndQuiz() {
         <button type="button" onClick={backToHome} className="btn mx-3">
           Back to Home
         </button>
-        <button type="button" onClick={playAgain} className="btn mx-3">
+        {/* <button type="button" onClick={playAgain} className="btn mx-3">
           Play Again
-        </button>
+        </button> */}
       </div>
     </div>
   );
