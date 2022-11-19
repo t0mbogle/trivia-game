@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import QuestionsContext from "../utils/QuestionsContext";
 
 function Form() {
   const [category, setCategory] = useState("Random");
+
+  const { numOfQuestions, setNumOfQuestions, allQuestions } =
+    useContext(QuestionsContext);
 
   const getCategoryQuestion = async () => {
     await axios
@@ -11,10 +15,11 @@ function Form() {
         const random = Math.floor(Math.random() * res.data.clues_count);
         const astronomyData = {
           question: res.data.clues[random].question,
-          category: res.data.title,
           answer: res.data.clues[random].answer,
+          category: res.data.title,
         };
-        console.log(astronomyData);
+        allQuestions.push(astronomyData);
+        console.log(allQuestions);
       })
       .catch((err) => {
         console.log(`${err} <---- error`);
@@ -28,9 +33,10 @@ function Form() {
         const randomData = {
           question: res.data[0].question,
           answer: res.data[0].answer,
-          title: res.data[0].category.title,
+          category: res.data[0].category.title,
         };
-        console.log(randomData);
+        allQuestions.push(randomData);
+        console.log(allQuestions);
       })
       .catch((err) => {
         console.log(`${err} <---- error`);
@@ -38,10 +44,14 @@ function Form() {
   };
 
   const filter = () => {
-    if (category === "Random") {
+    let count = 0;
+    while (category === "Random" && count < numOfQuestions) {
       getRandomQuestion();
-    } else {
+      count += 1;
+    }
+    while (category !== "Random" && count < numOfQuestions) {
       getCategoryQuestion();
+      count += 1;
     }
   };
 
@@ -63,7 +73,10 @@ function Form() {
         <div className="p-4">
           <label htmlFor="number of questions">
             Number of Questions
-            <select className="text-black">
+            <select
+              className="text-black"
+              onChange={(e) => setNumOfQuestions(e.target.value)}
+            >
               <option value="2">2</option>
               <option value="5">5</option>
             </select>

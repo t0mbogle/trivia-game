@@ -9,12 +9,12 @@ import QuestionsContext from "../utils/QuestionsContext";
 
 function App() {
   const [numOfQuestions, setNumOfQuestions] = useState(2);
-  const [astronomyQuestions] = useState([]);
+  const [allQuestions, setAllQuestions] = useState([]);
 
   return (
     <div className="h-screen w-screen bg-[#272838] flex flex-col items-center justify-center text-center">
       {/* eslint-disable-next-line react/jsx-no-constructed-context-values */}
-      <QuestionsContext.Provider value={{ numOfQuestions, setNumOfQuestions, astronomyQuestions }}>
+      <QuestionsContext.Provider value={{ numOfQuestions, setNumOfQuestions, allQuestions, setAllQuestions }}>
         <Routes>
           <Route exact path="/" element={<StartQuiz />} />
           <Route exact path="/questions" element={<Questions />} />

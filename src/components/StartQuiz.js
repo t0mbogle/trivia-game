@@ -1,31 +1,23 @@
-import React /* { useContext, useState } */ from "react";
-// import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "./Form";
-// import QuestionsContext from "../utils/QuestionsContext";
-// import getAstronomy from "../requests/getAstronomy";
+import QuestionsContext from "../utils/QuestionsContext";
 
 function StartQuiz() {
-  // const { numOfQuestions, setNumOfQuestions } = useContext(QuestionsContext);
+  const { numOfQuestions, allQuestions } = useContext(QuestionsContext);
 
-  // const [category, setCategory] = useState("random");
-  // let count = 0;
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const handleStartQuiz = () => {
-  //   if (category === "random") {
-  //     navigate("/questions");
-  //   }
-  //   while (category === "astronomy" && count < numOfQuestions) {
-  //     getAstronomy();
-  //     count += 1;
-  //   }
-  // };
+  const handleStartQuiz = () => {
+    if (allQuestions.length === numOfQuestions) {
+      navigate("/questions");
+    }
+  };
 
   return (
     <div>
       <h1 className="text-[#7D83FF] text-3xl">Trivia Game</h1>
       <Form />
-      {/* put form data into separate component ? */}
       {/* <form className="flex flex-col border-2 border-[#7D83FF] rounded-xl my-4">
         <div className="p-4">
           <label htmlFor="category">
@@ -55,13 +47,8 @@ function StartQuiz() {
         </div>
       </form> */}
 
-      <p>Questions for the next game: </p>
-      <p>Category: </p>
-      <button
-        type="button"
-        // onClick={handleStartQuiz}
-        className="btn m-4"
-      >
+      <p>Questions for the next game: {numOfQuestions}</p>
+      <button type="button" onClick={handleStartQuiz} className="btn m-4">
         Start
         {/* Start button should make the API call. If unsuccessful, render error message below */}
       </button>
