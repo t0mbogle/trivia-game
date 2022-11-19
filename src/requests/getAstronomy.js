@@ -2,7 +2,7 @@ import axios from "axios";
 
 const data = [];
 
-const getAstronomy = async () => {
+const getAstronomy = async (setAllQuestions) => {
   const endpoint = "https://jservice.io/api/category?id=17";
 
   await axios
@@ -15,6 +15,7 @@ const getAstronomy = async () => {
         answer: res.data.clues[random].answer,
       });
       const astronomyQuestions = data;
+      setAllQuestions(astronomyQuestions);
       console.log(astronomyQuestions);
     })
     .catch((err) => {

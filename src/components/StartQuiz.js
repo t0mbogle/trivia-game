@@ -6,10 +6,9 @@ import getAstronomy from "../requests/getAstronomy";
 function StartQuiz() {
   const { numOfQuestions, setNumOfQuestions } = useContext(QuestionsContext);
 
-  const navigate = useNavigate();
-
   const [category, setCategory] = useState("random");
   let count = 0;
+  const navigate = useNavigate();
 
   const handleStartQuiz = () => {
     if (category === "random") {
@@ -24,6 +23,8 @@ function StartQuiz() {
   return (
     <div>
       <h1 className="text-[#7D83FF] text-3xl">Trivia Game</h1>
+
+      {/* put form data into separate component ? */}
       <form className="flex flex-col border-2 border-[#7D83FF] rounded-xl my-4">
         <div className="p-4">
           <label htmlFor="category">
