@@ -22,7 +22,7 @@ See the section about running tests for more information.
 <img src="src/assets/triviagamescreenshot.png" width=75% height=75%>
 
 ## Roadmap
-- [ ] Make all API calls on game start, filter through object on next question
+- [x] Make all API calls on game start, filter through object on next question
 - [ ] Add multiple categories
 - [ ] Error messages
 - [ ] More testing for Questions component and routing

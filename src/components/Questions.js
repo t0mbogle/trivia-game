@@ -1,36 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineArrowBack } from "react-icons/md";
-import getQuestion from "../requests/getQuestion";
 import QuestionsContext from "../utils/QuestionsContext";
 
 function Questions() {
-  const [question, setQuestion] = useState("");
   const [count, setCount] = useState(1);
-  const [answer, setAnswer] = useState("");
+  // Count - 1 will return the first object in the allQuestions array.
   const [showAnswer, setShowAnswer] = useState(false);
-  const [category, setCategory] = useState("");
   const [showHint, setShowHint] = useState(false);
 
-  const { numOfQuestions } = useContext(QuestionsContext);
-
-  useEffect(() => {
-    getQuestion(setQuestion, setAnswer, setCategory);
-  }, []);
+  const { numOfQuestions, allQuestions } = useContext(QuestionsContext);
 
   const handleAnswer = () => {
     setShowAnswer(true);
   };
-
   const handleHint = () => {
     setShowHint(true);
   };
 
   const navigate = useNavigate();
-
   const handleQuestion = () => {
     if (count < numOfQuestions) {
-      getQuestion(setQuestion, setAnswer, setCategory);
       setShowAnswer(false); // On click of new question, collapse answer & hint
       setShowHint(false);
       setCount((prev) => prev + 1);
@@ -56,20 +46,22 @@ function Questions() {
 
       <div className="content-wrapper">
         <p data-testid="question-id" className="mx-6 my-2 text-xl">
-          {question}
+          {allQuestions[count - 1].question}
         </p>
         <div className="hint-answer flex justify-center m-3">
           <div className="hint-wrapper flex flex-col px-6 pt-6 pb-2">
             <button type="button" onClick={handleHint} className="btn">
               Get Hint
             </button>
-            {showHint ? <p>{category}</p> : null}
+            {showHint ? <p>{allQuestions[count - 1].category}</p> : null}
           </div>
           <div className="answer-wrapper flex flex-col px-6 pt-6 pb-2">
             <button type="button" onClick={handleAnswer} className="btn">
               Show Answer
             </button>
-            {showAnswer ? <p data-testid="answer-id">{answer}</p> : null}
+            {showAnswer ? (
+              <p data-testid="answer-id">{allQuestions[count - 1].answer}</p>
+            ) : null}
           </div>
         </div>
       </div>
