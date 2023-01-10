@@ -4,12 +4,12 @@ import Form from "./Form";
 import QuestionsContext from "../utils/QuestionsContext";
 
 function StartQuiz() {
-  const { numOfQuestions, allQuestions } = useContext(QuestionsContext);
+  const { allQuestions } = useContext(QuestionsContext);
 
   const navigate = useNavigate();
 
   const handleStartQuiz = () => {
-    if (allQuestions.length > 1) {
+    if (allQuestions.length !== 0) {
       navigate("/questions");
     }
   };
@@ -22,7 +22,7 @@ function StartQuiz() {
           <Form />
         </div>
         <div className="p-4">
-          <p>Questions for quiz: {numOfQuestions}</p>
+          <p>Questions for quiz: {allQuestions.length}</p>
           <button type="button" onClick={handleStartQuiz} className="btn m-4">
             Start
           </button>

@@ -5,13 +5,15 @@ import QuestionsContext from "../utils/QuestionsContext";
 function Form() {
   const [id, setId] = useState("Random");
 
-  const ASTRONOMY = 17;
-  const LANDMARKS = 112;
-  const AUTOMOBILES = 5;
-  const WEATHER = 19;
-  const ZOOLOGY = 54;
+  const ANIMALS = 109;
+  const ASTRONOMY = 13;
+  const AUTOMOBILES = 23;
+  const HISTORY = 22;
+  const SCIENCE = 135;
+  const SPORTS = 81;
+  const WEATHER = 36;
 
-  const { numOfQuestions, setNumOfQuestions, allQuestions } =
+  const { numOfQuestions, setNumOfQuestions, allQuestions, setAllQuestions } =
     useContext(QuestionsContext);
 
   const getCategoryQuestion = async () => {
@@ -19,12 +21,12 @@ function Form() {
       .get(`https://jservice.io/api/category?id=${id}`)
       .then((res) => {
         const random = Math.floor(Math.random() * res.data.clues_count);
-        const astronomyData = {
+        const categoryData = {
           question: res.data.clues[random].question,
           answer: res.data.clues[random].answer,
           category: res.data.title,
         };
-        allQuestions.push(astronomyData);
+        allQuestions.push(categoryData);
         console.log(allQuestions);
       })
       .catch((err) => {
@@ -52,7 +54,7 @@ function Form() {
   const filter = () => {
     let count = 0;
     while (id === "Random" && count < numOfQuestions) {
-      getRandomQuestion();
+      getRandomQuestion(); // setAllQuestions([...allQuestions, getRandomQuestion()]), have a function returning?
       count += 1;
     }
     while (id !== "Random" && count < numOfQuestions) {
@@ -61,9 +63,13 @@ function Form() {
     }
   };
 
+  const clearData = () => {
+    setAllQuestions([]);
+  };
+
   return (
     <>
-      <form className="flex flex-col border-2 border-[#7D83FF] rounded-xl my-4">
+      <form className="flex flex-col border-2 border-[#7D83FF] rounded-xl p-3 my-4">
         <div className="pt-4">
           <label htmlFor="category">
             Category
@@ -72,11 +78,13 @@ function Form() {
               onChange={(e) => setId(e.target.value)} // This will be set to 'Random' or a number value
             >
               <option value="Random">Random</option>
+              <option value={`${ANIMALS}`}>Animals</option>
               <option value={`${ASTRONOMY}`}>Astronomy</option>
-              <option value={`${LANDMARKS}`}>Landmarks</option>
               <option value={`${AUTOMOBILES}`}>Automobiles</option>
+              <option value={`${HISTORY}`}>History</option>
+              <option value={`${SCIENCE}`}>Science</option>
+              <option value={`${SPORTS}`}>Sports</option>
               <option value={`${WEATHER}`}>Weather</option>
-              <option value={`${ZOOLOGY}`}>Zoology</option>
             </select>
           </label>
         </div>
@@ -88,6 +96,7 @@ function Form() {
               onChange={(e) => setNumOfQuestions(e.target.value)}
             >
               <option value="0">0</option>
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="5">5</option>
               <option value="10">10</option>
@@ -95,8 +104,19 @@ function Form() {
           </label>
         </div>
         <div className="pb-4">
-          <button className="btn" type="button" onClick={filter}>
+          <button
+            type="button"
+            onClick={filter}
+            className={allQuestions.length !== 0 ? "disabled-btn" : "btn"}
+          >
             Get Questions
+          </button>
+          <button
+            type="button"
+            onClick={clearData}
+            className={allQuestions.length !== 0 ? "btn" : "disabled-btn"} // needs to rerender to change.
+          >
+            Clear {allQuestions.length}
           </button>
         </div>
       </form>

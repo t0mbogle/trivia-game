@@ -9,6 +9,10 @@
 }
 @layer components {
     .btn {
-        @apply px-3 py-2 border-4 border-[#3D7068] bg-[#3D7068] rounded-lg text-[#F5F5F5];
+        @apply px-3 py-2 border-4 border-[#3D7068] bg-[#3D7068] rounded-lg text-[#F5F5F5]
+        mx-2;
+    }
+    .disabled-btn {
+        @apply bg-black text-red-500;
     }
 }

@@ -19,7 +19,7 @@ function EndQuiz() {
   // };
 
   const handleShowQuestions = () => {
-    setShowQuestions(true);
+    setShowQuestions(!showQuestions);
   };
 
   return (
@@ -28,7 +28,7 @@ function EndQuiz() {
 
       <div>
         <button type="button" className="btn m-4" onClick={handleShowQuestions}>
-          View all {numOfQuestions} Questions and Answers
+          Toggle {numOfQuestions} Questions and Answers
         </button>
         {showQuestions
           ? allQuestions.map((data) => (
